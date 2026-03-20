@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Evaluation | Session 3: Tech-Mediated Learning with Pedagogical Frameworks & UDL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14b8a6;
+            --primary-light: #2dd4bf;
+            --primary-dark: #0d9488;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Thai', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #14b8a6 0%, #8b5cf6 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .survey-header {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .survey-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .survey-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .survey-subtitle {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .survey-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .survey-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-text {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .progress-percent {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* Survey Sections */
+        .survey-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Question Styles */
+        .question {
+            margin-bottom: 28px;
+        }
+
+        .question:last-child {
+            margin-bottom: 0;
+        }
+
+        .question-label {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .question-label .required {
+            color: var(--danger);
+            margin-left: 4px;
+        }
+
+        .question-hint {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* Select/Dropdown */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            padding: 14px 48px 14px 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-white);
+            color: var(--text-dark);
+            cursor: pointer;
+            appearance: none;
+            transition: all 0.3s ease;
+        }
+
+        .select-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+
+        /* Radio & Checkbox */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .options-horizontal {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-item:hover {
+            background: #ccfbf1;
+            border-color: var(--primary-light);
+        }
+
+        .option-item.selected {
+            background: #ccfbf1;
+            border-color: var(--primary);
+        }
+
+        .option-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .option-item label {
+            font-size: 1rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        /* Likert Scale */
+        .likert-container {
+            overflow-x: auto;
+        }
+
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            min-width: 500px;
+        }
+
+        .likert-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .likert-option input {
+            display: none;
+        }
+
+        .likert-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 8px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .likert-option label:hover {
+            background: #ccfbf1;
+            border-color: var(--primary-light);
+        }
+
+        .likert-option input:checked + label {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .likert-number {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-white);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .likert-option input:checked + label .likert-number {
+            background: white;
+            color: var(--primary);
+        }
+
+        .likert-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .likert-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* NPS Scale */
+        .nps-scale {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nps-option {
+            width: 48px;
+            height: 48px;
+        }
+
+        .nps-option input {
+            display: none;
+        }
+
+        .nps-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nps-option:nth-child(-n+6) label {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 2px solid #fecaca;
+        }
+
+        .nps-option:nth-child(n+7):nth-child(-n+8) label {
+            background: #fffbeb;
+            color: #d97706;
+            border: 2px solid #fde68a;
+        }
+
+        .nps-option:nth-child(n+9) label {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 2px solid #bbf7d0;
+        }
+
+        .nps-option label:hover {
+            transform: scale(1.1);
+        }
+
+        .nps-option input:checked + label {
+            transform: scale(1.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nps-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Textarea */
+        .textarea-wrapper textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            font-size: 1rem;
+            font-family: inherit;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .textarea-wrapper textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.1);
+        }
+
+        .textarea-wrapper textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Matrix/Table Questions */
+        .matrix-container {
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .matrix-table th {
+            padding: 12px 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+            background: var(--bg-light);
+        }
+
+        .matrix-table th:first-child {
+            text-align: left;
+            padding-left: 16px;
+            width: 40%;
+        }
+
+        .matrix-table td {
+            padding: 16px 8px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .matrix-table td:first-child {
+            text-align: left;
+            padding-left: 16px;
+            font-weight: 500;
+        }
+
+        .matrix-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        .matrix-table input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Submit Section */
+        .submit-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .submit-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .submit-section p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .privacy-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        .privacy-note svg {
+            width: 18px;
+            height: 18px;
+            color: var(--success);
+        }
+
+        /* Thank You Screen */
+        .thank-you-screen {
+            display: none;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .thank-you-screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .thank-you-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--success), #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 3rem;
+        }
+
+        .thank-you-screen h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .thank-you-screen p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        .survey-footer {
+            text-align: center;
+            padding: 24px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .survey-footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
+            .survey-header {
+                padding: 24px;
+            }
+
+            .survey-title {
+                font-size: 1.4rem;
+            }
+
+            .survey-section {
+                padding: 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .likert-scale {
+                min-width: auto;
+                flex-direction: column;
+            }
+
+            .likert-option label {
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            .nps-option {
+                width: 40px;
+                height: 40px;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .survey-section {
+                box-shadow: none;
+                border: 1px solid var(--border);
+                page-break-inside: avoid;
+            }
+
+            .btn, .progress-container {
+                display: none;
+            }
+        }
+
+        /* Validation Styles */
+        .question.error .select-wrapper select,
+        .question.error textarea {
+            border-color: var(--danger);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .question.error .error-message {
+            display: block;
+        }
+
+        /* Auto-save indicator */
+        .autosave-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-white);
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .autosave-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .autosave-indicator .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="survey-header">
+            <div class="survey-badge">Session 3 Evaluation</div>
+            <h1 class="survey-title">Workshop Evaluation Survey</h1>
+            <h2 class="survey-subtitle">Redefining ELT through Tech-Mediated Learning:<br>Synergizing Pedagogical Frameworks and UDL</h2>
+            <div class="survey-meta">
+                <span>👤 Dr. Payungsak Kaenchan</span>
+                <span>🏛️ Faculty of Liberal Arts, Mahidol University</span>
+                <span>📅 Sunday, 22 March 2026 | 09:00-12:00</span>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <span class="progress-text">Survey Progress</span>
+                <span class="progress-percent" id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <!-- Survey Form -->
+        <form id="survey-form">
+            <!-- Section A: Participant Background -->
+            <section class="survey-section" id="section-a">
+                <div class="section-header">
+                    <div class="section-icon">👤</div>
+                    <div>
+                        <h3 class="section-title">Section A: Participant Background</h3>
+                        <p class="section-subtitle">Help us understand our audience (anonymous)</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">A1. How many years have you been teaching English?<span class="required">*</span></label>
+                    <div class="select-wrapper">
+                        <select name="teaching_years" required>
+                            <option value="">Select your experience level</option>
+                            <option value="0-2">0-2 years (Novice)</option>
+                            <option value="3-5">3-5 years (Early Career)</option>
+                            <option value="6-10">6-10 years (Mid-Career)</option>
+                            <option value="11-15">11-15 years (Experienced)</option>
+                            <option value="16-20">16-20 years (Senior)</option>
+                            <option value="20+">More than 20 years (Expert)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">A2. What level(s) do you currently teach?<span class="required">*</span></label>
+                    <p class="question-hint">Select all that apply</p>
+                    <div class="options-list">
+                        <div class="option-item">
+                            <input type="checkbox" id="level-primary" name="teaching_level" value="primary">
+                            <label for="level-primary">Primary / Elementary School</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="level-secondary" name="teaching_level" value="secondary">
+                            <label for="level-secondary">Secondary / High School</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="level-vocational" name="teaching_level" value="vocational">
+                            <label for="level-vocational">Vocational / Technical College</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="level-university" name="teaching_level" value="university">
+                            <label for="level-university">University / Higher Education</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="checkbox" id="level-adult" name="teaching_level" value="adult">
+                            <label for="level-adult">Adult / Corporate Training</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">A3. Prior to this workshop, how familiar were you with pedagogical frameworks (e.g., PICRAT, Bloom's) and UDL?<span class="required">*</span></label>
+                    <div class="options-list">
+                        <div class="option-item">
+                            <input type="radio" id="familiarity-1" name="prior_familiarity" value="1" required>
+                            <label for="familiarity-1">Not at all familiar - This is completely new to me</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="familiarity-2" name="prior_familiarity" value="2">
+                            <label for="familiarity-2">Slightly familiar - I've heard of them but never used them</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="familiarity-3" name="prior_familiarity" value="3">
+                            <label for="familiarity-3">Moderately familiar - I know the basics</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="familiarity-4" name="prior_familiarity" value="4">
+                            <label for="familiarity-4">Very familiar - I have some experience applying them</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="familiarity-5" name="prior_familiarity" value="5">
+                            <label for="familiarity-5">Expert - I regularly use these frameworks in my work</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">A4. How did you hear about this workshop?</label>
+                    <div class="select-wrapper">
+                        <select name="heard_from">
+                            <option value="">Select an option</option>
+                            <option value="email">Email invitation</option>
+                            <option value="colleague">Colleague recommendation</option>
+                            <option value="social_media">Social media</option>
+                            <option value="university">University announcement</option>
+                            <option value="professional_network">Professional network/association</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section B: Learning Outcomes -->
+            <section class="survey-section" id="section-b">
+                <div class="section-header">
+                    <div class="section-icon">🎯</div>
+                    <div>
+                        <h3 class="section-title">Section B: Learning Outcomes</h3>
+                        <p class="section-subtitle">Rate how well the workshop achieved its objectives</p>
+                    </div>
+                </div>
+
+                <p class="question-hint" style="margin-bottom: 20px;">Please rate your agreement with each statement (1 = Strongly Disagree, 5 = Strongly Agree)</p>
+
+                <div class="matrix-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Learning Outcome Statement</th>
+                                <th>1<br><small>Strongly Disagree</small></th>
+                                <th>2<br><small>Disagree</small></th>
+                                <th>3<br><small>Neutral</small></th>
+                                <th>4<br><small>Agree</small></th>
+                                <th>5<br><small>Strongly Agree</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B1. The learning objectives were clearly stated at the beginning.</td>
+                                <td><input type="radio" name="lo_b1" value="1" required></td>
+                                <td><input type="radio" name="lo_b1" value="2"></td>
+                                <td><input type="radio" name="lo_b1" value="3"></td>
+                                <td><input type="radio" name="lo_b1" value="4"></td>
+                                <td><input type="radio" name="lo_b1" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>B2. I now understand how to shift from a "tools-first" to a "pedagogy-first" mindset.</td>
+                                <td><input type="radio" name="lo_b2" value="1" required></td>
+                                <td><input type="radio" name="lo_b2" value="2"></td>
+                                <td><input type="radio" name="lo_b2" value="3"></td>
+                                <td><input type="radio" name="lo_b2" value="4"></td>
+                                <td><input type="radio" name="lo_b2" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>B3. I can apply Tech Pedagogical Frameworks (e.g., PICRAT, Bloom's, 4Ds) to my teaching.</td>
+                                <td><input type="radio" name="lo_b3" value="1" required></td>
+                                <td><input type="radio" name="lo_b3" value="2"></td>
+                                <td><input type="radio" name="lo_b3" value="3"></td>
+                                <td><input type="radio" name="lo_b3" value="4"></td>
+                                <td><input type="radio" name="lo_b3" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>B4. I understand how to integrate UDL principles to remove barriers for diverse learners.</td>
+                                <td><input type="radio" name="lo_b4" value="1" required></td>
+                                <td><input type="radio" name="lo_b4" value="2"></td>
+                                <td><input type="radio" name="lo_b4" value="3"></td>
+                                <td><input type="radio" name="lo_b4" value="4"></td>
+                                <td><input type="radio" name="lo_b4" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>B5. The workshop content was relevant to my teaching context.</td>
+                                <td><input type="radio" name="lo_b5" value="1" required></td>
+                                <td><input type="radio" name="lo_b5" value="2"></td>
+                                <td><input type="radio" name="lo_b5" value="3"></td>
+                                <td><input type="radio" name="lo_b5" value="4"></td>
+                                <td><input type="radio" name="lo_b5" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section C: Content Quality -->
+            <section class="survey-section" id="section-c">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h3 class="section-title">Section C: Content Quality</h3>
+                        <p class="section-subtitle">Evaluate the workshop content and materials</p>
+                    </div>
+                </div>
+
+                <div class="matrix-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Content Quality Statement</th>
+                                <th>1<br><small>Strongly Disagree</small></th>
+                                <th>2<br><small>Disagree</small></th>
+                                <th>3<br><small>Neutral</small></th>
+                                <th>4<br><small>Agree</small></th>
+                                <th>5<br><small>Strongly Agree</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>C1. The content was well-organized and easy to follow.</td>
+                                <td><input type="radio" name="cq_c1" value="1" required></td>
+                                <td><input type="radio" name="cq_c1" value="2"></td>
+                                <td><input type="radio" name="cq_c1" value="3"></td>
+                                <td><input type="radio" name="cq_c1" value="4"></td>
+                                <td><input type="radio" name="cq_c1" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>C2. The depth of content was appropriate for my level.</td>
+                                <td><input type="radio" name="cq_c2" value="1" required></td>
+                                <td><input type="radio" name="cq_c2" value="2"></td>
+                                <td><input type="radio" name="cq_c2" value="3"></td>
+                                <td><input type="radio" name="cq_c2" value="4"></td>
+                                <td><input type="radio" name="cq_c2" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>C3. There was a good balance between theory and practical application.</td>
+                                <td><input type="radio" name="cq_c3" value="1" required></td>
+                                <td><input type="radio" name="cq_c3" value="2"></td>
+                                <td><input type="radio" name="cq_c3" value="3"></td>
+                                <td><input type="radio" name="cq_c3" value="4"></td>
+                                <td><input type="radio" name="cq_c3" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>C4. The framework examples and ELT scenarios were helpful and realistic.</td>
+                                <td><input type="radio" name="cq_c4" value="1" required></td>
+                                <td><input type="radio" name="cq_c4" value="2"></td>
+                                <td><input type="radio" name="cq_c4" value="3"></td>
+                                <td><input type="radio" name="cq_c4" value="4"></td>
+                                <td><input type="radio" name="cq_c4" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>C5. The handouts and materials provided will be useful for future reference.</td>
+                                <td><input type="radio" name="cq_c5" value="1" required></td>
+                                <td><input type="radio" name="cq_c5" value="2"></td>
+                                <td><input type="radio" name="cq_c5" value="3"></td>
+                                <td><input type="radio" name="cq_c5" value="4"></td>
+                                <td><input type="radio" name="cq_c5" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section D: Workshop Design & Activities -->
+            <section class="survey-section" id="section-d">
+                <div class="section-header">
+                    <div class="section-icon">🎨</div>
+                    <div>
+                        <h3 class="section-title">Section D: Workshop Design & Activities</h3>
+                        <p class="section-subtitle">Evaluate the structure, pacing, and activities</p>
+                    </div>
+                </div>
+
+                <div class="matrix-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Workshop Design Statement</th>
+                                <th>1<br><small>Strongly Disagree</small></th>
+                                <th>2<br><small>Disagree</small></th>
+                                <th>3<br><small>Neutral</small></th>
+                                <th>4<br><small>Agree</small></th>
+                                <th>5<br><small>Strongly Agree</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>D1. The workshop was well-paced with adequate time for each activity.</td>
+                                <td><input type="radio" name="wd_d1" value="1" required></td>
+                                <td><input type="radio" name="wd_d1" value="2"></td>
+                                <td><input type="radio" name="wd_d1" value="3"></td>
+                                <td><input type="radio" name="wd_d1" value="4"></td>
+                                <td><input type="radio" name="wd_d1" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>D2. The hands-on framework application activities were engaging and valuable.</td>
+                                <td><input type="radio" name="wd_d2" value="1" required></td>
+                                <td><input type="radio" name="wd_d2" value="2"></td>
+                                <td><input type="radio" name="wd_d2" value="3"></td>
+                                <td><input type="radio" name="wd_d2" value="4"></td>
+                                <td><input type="radio" name="wd_d2" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>D3. Group work and discussions enhanced my learning experience.</td>
+                                <td><input type="radio" name="wd_d3" value="1" required></td>
+                                <td><input type="radio" name="wd_d3" value="2"></td>
+                                <td><input type="radio" name="wd_d3" value="3"></td>
+                                <td><input type="radio" name="wd_d3" value="4"></td>
+                                <td><input type="radio" name="wd_d3" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>D4. There were adequate opportunities for questions and interaction.</td>
+                                <td><input type="radio" name="wd_d4" value="1" required></td>
+                                <td><input type="radio" name="wd_d4" value="2"></td>
+                                <td><input type="radio" name="wd_d4" value="3"></td>
+                                <td><input type="radio" name="wd_d4" value="4"></td>
+                                <td><input type="radio" name="wd_d4" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>D5. The overall 3-hour duration was appropriate for the content covered.</td>
+                                <td><input type="radio" name="wd_d5" value="1" required></td>
+                                <td><input type="radio" name="wd_d5" value="2"></td>
+                                <td><input type="radio" name="wd_d5" value="3"></td>
+                                <td><input type="radio" name="wd_d5" value="4"></td>
+                                <td><input type="radio" name="wd_d5" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section E: Facilitator Evaluation -->
+            <section class="survey-section" id="section-e">
+                <div class="section-header">
+                    <div class="section-icon">🎤</div>
+                    <div>
+                        <h3 class="section-title">Section E: Facilitator Evaluation</h3>
+                        <p class="section-subtitle">Rate the facilitator's performance and delivery</p>
+                    </div>
+                </div>
+
+                <p class="question-hint" style="margin-bottom: 20px; font-weight: 600; color: var(--primary);">Facilitator: Dr. Payungsak Kaenchan</p>
+
+                <div class="matrix-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Facilitator Attribute</th>
+                                <th>1<br><small>Poor</small></th>
+                                <th>2<br><small>Fair</small></th>
+                                <th>3<br><small>Good</small></th>
+                                <th>4<br><small>Very Good</small></th>
+                                <th>5<br><small>Excellent</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>E1. Subject matter expertise and knowledge depth</td>
+                                <td><input type="radio" name="fe_e1" value="1" required></td>
+                                <td><input type="radio" name="fe_e1" value="2"></td>
+                                <td><input type="radio" name="fe_e1" value="3"></td>
+                                <td><input type="radio" name="fe_e1" value="4"></td>
+                                <td><input type="radio" name="fe_e1" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E2. Clarity of explanations and instructions</td>
+                                <td><input type="radio" name="fe_e2" value="1" required></td>
+                                <td><input type="radio" name="fe_e2" value="2"></td>
+                                <td><input type="radio" name="fe_e2" value="3"></td>
+                                <td><input type="radio" name="fe_e2" value="4"></td>
+                                <td><input type="radio" name="fe_e2" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E3. Presentation skills and delivery style</td>
+                                <td><input type="radio" name="fe_e3" value="1" required></td>
+                                <td><input type="radio" name="fe_e3" value="2"></td>
+                                <td><input type="radio" name="fe_e3" value="3"></td>
+                                <td><input type="radio" name="fe_e3" value="4"></td>
+                                <td><input type="radio" name="fe_e3" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E4. Responsiveness to participant questions</td>
+                                <td><input type="radio" name="fe_e4" value="1" required></td>
+                                <td><input type="radio" name="fe_e4" value="2"></td>
+                                <td><input type="radio" name="fe_e4" value="3"></td>
+                                <td><input type="radio" name="fe_e4" value="4"></td>
+                                <td><input type="radio" name="fe_e4" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E5. Engagement with participants and creating inclusive atmosphere</td>
+                                <td><input type="radio" name="fe_e5" value="1" required></td>
+                                <td><input type="radio" name="fe_e5" value="2"></td>
+                                <td><input type="radio" name="fe_e5" value="3"></td>
+                                <td><input type="radio" name="fe_e5" value="4"></td>
+                                <td><input type="radio" name="fe_e5" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E6. Enthusiasm and passion for the subject</td>
+                                <td><input type="radio" name="fe_e6" value="1" required></td>
+                                <td><input type="radio" name="fe_e6" value="2"></td>
+                                <td><input type="radio" name="fe_e6" value="3"></td>
+                                <td><input type="radio" name="fe_e6" value="4"></td>
+                                <td><input type="radio" name="fe_e6" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E7. Effective use of time and pacing</td>
+                                <td><input type="radio" name="fe_e7" value="1" required></td>
+                                <td><input type="radio" name="fe_e7" value="2"></td>
+                                <td><input type="radio" name="fe_e7" value="3"></td>
+                                <td><input type="radio" name="fe_e7" value="4"></td>
+                                <td><input type="radio" name="fe_e7" value="5"></td>
+                            </tr>
+                            <tr>
+                                <td>E8. Use of visual aids and supporting materials</td>
+                                <td><input type="radio" name="fe_e8" value="1" required></td>
+                                <td><input type="radio" name="fe_e8" value="2"></td>
+                                <td><input type="radio" name="fe_e8" value="3"></td>
+                                <td><input type="radio" name="fe_e8" value="4"></td>
+                                <td><input type="radio" name="fe_e8" value="5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section F: Overall Satisfaction -->
+            <section class="survey-section" id="section-f">
+                <div class="section-header">
+                    <div class="section-icon">⭐</div>
+                    <div>
+                        <h3 class="section-title">Section F: Overall Satisfaction</h3>
+                        <p class="section-subtitle">Your overall impression and future intentions</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">F1. How would you rate this workshop overall?<span class="required">*</span></label>
+                    <div class="likert-container">
+                        <div class="likert-scale">
+                            <div class="likert-option">
+                                <input type="radio" id="overall-1" name="overall_rating" value="1" required>
+                                <label for="overall-1">
+                                    <span class="likert-number">1</span>
+                                    <span class="likert-text">Poor</span>
+                                </label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="overall-2" name="overall_rating" value="2">
+                                <label for="overall-2">
+                                    <span class="likert-number">2</span>
+                                    <span class="likert-text">Fair</span>
+                                </label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="overall-3" name="overall_rating" value="3">
+                                <label for="overall-3">
+                                    <span class="likert-number">3</span>
+                                    <span class="likert-text">Good</span>
+                                </label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="overall-4" name="overall_rating" value="4">
+                                <label for="overall-4">
+                                    <span class="likert-number">4</span>
+                                    <span class="likert-text">Very Good</span>
+                                </label>
+                            </div>
+                            <div class="likert-option">
+                                <input type="radio" id="overall-5" name="overall_rating" value="5">
+                                <label for="overall-5">
+                                    <span class="likert-number">5</span>
+                                    <span class="likert-text">Excellent</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">F2. How likely are you to recommend this workshop to a colleague?<span class="required">*</span></label>
+                    <p class="question-hint">Net Promoter Score: 0 = Not at all likely, 10 = Extremely likely</p>
+                    <div class="nps-scale">
+                        <div class="nps-option"><input type="radio" id="nps-0" name="nps_score" value="0" required><label for="nps-0">0</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-1" name="nps_score" value="1"><label for="nps-1">1</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-2" name="nps_score" value="2"><label for="nps-2">2</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-3" name="nps_score" value="3"><label for="nps-3">3</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-4" name="nps_score" value="4"><label for="nps-4">4</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-5" name="nps_score" value="5"><label for="nps-5">5</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-6" name="nps_score" value="6"><label for="nps-6">6</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-7" name="nps_score" value="7"><label for="nps-7">7</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-8" name="nps_score" value="8"><label for="nps-8">8</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-9" name="nps_score" value="9"><label for="nps-9">9</label></div>
+                        <div class="nps-option"><input type="radio" id="nps-10" name="nps_score" value="10"><label for="nps-10">10</label></div>
+                    </div>
+                    <div class="nps-labels">
+                        <span>Not at all likely</span>
+                        <span>Extremely likely</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">F3. How likely are you to apply what you learned in your teaching practice?<span class="required">*</span></label>
+                    <div class="options-list">
+                        <div class="option-item">
+                            <input type="radio" id="apply-1" name="apply_likelihood" value="1" required>
+                            <label for="apply-1">Very unlikely - I don't see how this applies to my context</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="apply-2" name="apply_likelihood" value="2">
+                            <label for="apply-2">Unlikely - I may try some elements but face significant barriers</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="apply-3" name="apply_likelihood" value="3">
+                            <label for="apply-3">Neutral - I might apply some ideas if the opportunity arises</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="apply-4" name="apply_likelihood" value="4">
+                            <label for="apply-4">Likely - I plan to implement several strategies soon</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="apply-5" name="apply_likelihood" value="5">
+                            <label for="apply-5">Very likely - I'm excited to apply these ideas immediately</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">F4. Would you attend future workshops from this facilitator/organizer?<span class="required">*</span></label>
+                    <div class="options-list options-horizontal">
+                        <div class="option-item">
+                            <input type="radio" id="future-yes" name="attend_future" value="yes" required>
+                            <label for="future-yes">Yes, definitely</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="future-probably" name="attend_future" value="probably">
+                            <label for="future-probably">Probably yes</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="future-maybe" name="attend_future" value="maybe">
+                            <label for="future-maybe">Maybe</label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="future-no" name="attend_future" value="no">
+                            <label for="future-no">No</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section G: Open Feedback -->
+            <section class="survey-section" id="section-g">
+                <div class="section-header">
+                    <div class="section-icon">💬</div>
+                    <div>
+                        <h3 class="section-title">Section G: Open Feedback</h3>
+                        <p class="section-subtitle">Share your thoughts and suggestions</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">G1. What was the MOST valuable thing you learned or experienced in this workshop?</label>
+                    <div class="textarea-wrapper">
+                        <textarea name="most_valuable" placeholder="Please share your key takeaway..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                        <div class="char-count"><span class="current">0</span>/1000 characters</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">G2. What aspects of the workshop could be improved?</label>
+                    <div class="textarea-wrapper">
+                        <textarea name="improvements" placeholder="Please share your suggestions for improvement..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                        <div class="char-count"><span class="current">0</span>/1000 characters</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">G3. What specific topics or skills would you like to see covered in future workshops?</label>
+                    <div class="textarea-wrapper">
+                        <textarea name="future_topics" placeholder="Suggest topics for future professional development..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                        <div class="char-count"><span class="current">0</span>/1000 characters</div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">G4. Any additional comments or feedback?</label>
+                    <div class="textarea-wrapper">
+                        <textarea name="additional_comments" placeholder="Share any other thoughts..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                        <div class="char-count"><span class="current">0</span>/1000 characters</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Submit Section -->
+            <section class="submit-section">
+                <h3>🎉 Ready to Submit?</h3>
+                <p>Thank you for taking the time to complete this evaluation. Your feedback is invaluable for improving future workshops.</p>
+                
+                <button type="submit" class="btn btn-success btn-large">
+                    ✓ Submit Evaluation
+                </button>
+                
+                <div class="privacy-note">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span>Your responses are completely anonymous and confidential</span>
+                </div>
+            </section>
+        </form>
+
+        <!-- Thank You Screen -->
+        <div class="thank-you-screen" id="thank-you">
+            <div class="thank-you-icon">✓</div>
+            <h2>Thank You!</h2>
+            <p>Your evaluation has been successfully submitted.<br>We appreciate your valuable feedback!</p>
+            <button class="btn btn-primary" onclick="window.location.reload()">Submit Another Response</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="survey-footer">
+            <p>© 2026 ELT Professional Development Workshop Series</p>
+            <p>Faculty of Liberal Arts, Mahidol University</p>
+        </footer>
+    </div>
+
+    <!-- Auto-save Indicator -->
+    <div class="autosave-indicator" id="autosave-indicator">
+        <span class="dot"></span>
+        <span>Progress saved</span>
+    </div>
+
+    <script>
+        const SURVEY_CONFIG = {
+            id: 'session3_tech_mediated_udl',
+            title: 'Session 3: Tech-Mediated Learning with Pedagogical Frameworks & UDL',
+            facilitator: 'Dr. Payungsak Kaenchan',
+            date: '2026-03-22',
+            storageKey: 'survey_session3_responses',
+            webhookUrl: ''
+        };
+
+        function updateProgress() {
+            const form = document.getElementById('survey-form');
+            const requiredFields = form.querySelectorAll('[required]');
+            let filledCount = 0;
+
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    const radioGroup = form.querySelectorAll(`input[name="${field.name}"]`);
+                    const isChecked = Array.from(radioGroup).some(r => r.checked);
+                    if (isChecked) filledCount++;
+                } else if (field.value) {
+                    filledCount++;
+                }
+            });
+
+            const radioGroups = new Set();
+            form.querySelectorAll('input[type="radio"][required]').forEach(r => radioGroups.add(r.name));
+            const totalRequired = form.querySelectorAll('select[required]').length + radioGroups.size;
+
+            const percent = Math.round((filledCount / totalRequired) * 100);
+            document.getElementById('progress-percent').textContent = `${percent}%`;
+            document.getElementById('progress-fill').style.width = `${percent}%`;
+        }
+
+        function saveProgress() {
+            const form = document.getElementById('survey-form');
+            const formData = new FormData(form);
+            const data = {};
+
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            localStorage.setItem(SURVEY_CONFIG.storageKey, JSON.stringify(data));
+            showAutosaveIndicator();
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem(SURVEY_CONFIG.storageKey);
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+            const form = document.getElementById('survey-form');
+
+            for (let [key, value] of Object.entries(data)) {
+                const fields = form.querySelectorAll(`[name="${key}"]`);
+                fields.forEach(field => {
+                    if (field.type === 'radio' || field.type === 'checkbox') {
+                        if (Array.isArray(value)) {
+                            field.checked = value.includes(field.value);
+                        } else {
+                            field.checked = field.value === value;
+                        }
+                    } else {
+                        field.value = value;
+                    }
+                });
+            }
+
+            updateProgress();
+        }
+
+        function showAutosaveIndicator() {
+            const indicator = document.getElementById('autosave-indicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        function updateCharCount(textarea) {
+            const counter = textarea.parentElement.querySelector('.char-count .current');
+            counter.textContent = textarea.value.length;
+        }
+
+        function setupOptionItems() {
+            document.querySelectorAll('.option-item input').forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.type === 'radio') {
+                        document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                            r.closest('.option-item')?.classList.remove('selected');
+                        });
+                    }
+                    
+                    if (this.checked) {
+                        this.closest('.option-item').classList.add('selected');
+                    } else {
+                        this.closest('.option-item').classList.remove('selected');
+                    }
+                });
+            });
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('survey-form');
+            const formData = new FormData(form);
+            const data = {
+                surveyId: SURVEY_CONFIG.id,
+                timestamp: new Date().toISOString(),
+                responses: {}
+            };
+
+            for (let [key, value] of formData.entries()) {
+                if (data.responses[key]) {
+                    if (Array.isArray(data.responses[key])) {
+                        data.responses[key].push(value);
+                    } else {
+                        data.responses[key] = [data.responses[key], value];
+                    }
+                } else {
+                    data.responses[key] = value;
+                }
+            }
+
+            const allResponses = JSON.parse(localStorage.getItem('all_survey_responses') || '[]');
+            allResponses.push(data);
+            localStorage.setItem('all_survey_responses', JSON.stringify(allResponses));
+
+            if (SURVEY_CONFIG.webhookUrl) {
+                try {
+                    await fetch(SURVEY_CONFIG.webhookUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                } catch (error) {
+                    console.log('Webhook submission:', error);
+                }
+            }
+
+            localStorage.removeItem(SURVEY_CONFIG.storageKey);
+
+            form.style.display = 'none';
+            document.querySelector('.progress-container').style.display = 'none';
+            document.getElementById('thank-you').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function exportResponses() {
+            const responses = JSON.parse(localStorage.getItem('all_survey_responses') || '[]');
+            
+            if (responses.length === 0) {
+                alert('No responses to export');
+                return;
+            }
+
+            const headers = ['timestamp', ...Object.keys(responses[0].responses)];
+            const csvContent = [
+                headers.join(','),
+                ...responses.map(r => {
+                    return [
+                        r.timestamp,
+                        ...Object.values(r.responses).map(v => 
+                            `"${Array.isArray(v) ? v.join('; ') : v}"`
+                        )
+                    ].join(',');
+                })
+            ].join('\n');
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${SURVEY_CONFIG.id}_responses_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            setupOptionItems();
+
+            document.getElementById('survey-form').addEventListener('change', function() {
+                updateProgress();
+                saveProgress();
+            });
+
+            document.getElementById('survey-form').addEventListener('submit', handleSubmit);
+
+            updateProgress();
+
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+                    exportResponses();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
